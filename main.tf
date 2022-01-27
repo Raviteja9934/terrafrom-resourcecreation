@@ -9,12 +9,11 @@ terraform {
 }
 provider "azurerm" {
   features {}
-}
 
-subscription_id = "5703080f-0c5a-453f-984f-a7fa18580637"
-  client_id       = "c942c71c-9ef8-4e6c-9dec-86fb1f0d8cd8"
-  client_secret   = "907299dd-6fff-4e30-acc1-e019a9bf590d"
-  tenant_id       = "21f5d35e-dd9a-4a81-bec9-526750cba4d3"
+subscription_id = "02ae268d-5afe-4b06-8b0d-176faed7644b"
+  client_id       = "ed0caa4d-0992-4f29-bb96-2b85f297a3a5"
+  client_secret   = "t-Z7Q~p5uKaIjZugtS6uazoVW.yPup1A5cZRQ"
+  tenant_id       = "03fedc85-c846-42cf-8db9-b7269fc4b2d3"
 }
 # Create a resource group if it doesn't exist
 resource "azurerm_resource_group" "myterraformgroup" {
@@ -139,8 +138,8 @@ output "tls_private_key" {
 }
 
 # Create virtual machine
-resource "azurerm_linux_virtual_machine" "myterraformvm" {
-    name                  = "gouthamtestvm6"
+resource "azurerm_linux_virtual_machine" "Ravitestvm" {
+    name                  = "ravitejatestvm34"
     location              = "eastus"
     resource_group_name   = azurerm_resource_group.myterraformgroup.name
     network_interface_ids = [azurerm_network_interface.myterraformnic.id]
@@ -165,7 +164,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
 
     admin_ssh_key {
         username       = "azureuser"
-        public_key     = tls_private_key.example_ssh.public_key_openssh
+        public_key     = file("/home/ravitestvm/.ssh/id_rsa.pub")
     }
 
     boot_diagnostics {
